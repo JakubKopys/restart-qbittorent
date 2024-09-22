@@ -30,7 +30,7 @@ while true; do
       if [[ "$line" == *"ip getter"* ]]; then
           log_message "Detected 'ip getter' event. Restarting qbittorrent container..."
 
-          if docker restart qbittorrent; then
+          if docker restart qbittorrent -t 120; then
               log_message "qbittorrent container restarted successfully."
           else
               log_message "Failed to restart qbittorrent container."
