@@ -5,7 +5,12 @@ This script solves this problem, by restarting the qbittorent container when tha
 This script waits for "gluetun" docker container, and if it's up, it watches its logs. 
 When Gluetun reconnects, it restarts the qBittorrent container.
 
-Context: https://www.reddit.com/r/qBittorrent/comments/115ef17/seeding_and_downloading_stopped_working_when/
+Context:
+- https://github.com/qdm12/gluetun/issues/504#issuecomment-893632195
+- https://www.reddit.com/r/qBittorrent/comments/115ef17/seeding_and_downloading_stopped_working_when/
+
+None of the solutions worked well for me. 
+Health-based restarts on qbitorrent don't work - qbittorrent regains the internet connectivity, but it still doesn't download/upload torrents. Due to this reason, I react to "*ip getter" log.
 
 ## How to use it
 It's best to run this script automatically on startup.
