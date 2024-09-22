@@ -10,11 +10,16 @@ Context:
 - https://www.reddit.com/r/qBittorrent/comments/115ef17/seeding_and_downloading_stopped_working_when/
 
 None of the solutions worked well for me. 
-Health-based restarts on qbitorrent don't work - qbittorrent regains the internet connectivity, but it still doesn't download/upload torrents. Due to this reason, I react to "*ip getter" log.
+Health-based restarts on qbitorrent don't work - qbittorrent regains the internet connectivity, but seeding and downloading still doesn't work.
+Instead of relying on the health check, this script listens to Gluetun's Logs, and restarts qbittorrent container after Gluetun successfuly restarts itself.
 
 ## How to use it
-It's best to run this script automatically on startup.
 
+### Docker
+
+The easiest way to use this script is to use the [docker-compose.yml](https://github.com/JakubKopys/restart-qbittorent/blob/main/docker-compose.yml)
+
+### Run on Host - Systemd
 On Linux, you can register it as a systemd service:
 
 1. Save the `restart-qbittorrent.sh` file on your disk, and make it exectuable:
