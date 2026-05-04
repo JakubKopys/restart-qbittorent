@@ -23,7 +23,7 @@ The easiest way to use this script is to use the [docker-compose.yml](https://gi
 On Linux, you can register it as a systemd service:
 
 1. Save the `restart-qbittorrent.sh` file on your disk, and make it exectuable:
-    `chmod +x restart-qbittorent.sh`
+    `chmod +x restart-qbittorrent.sh`
 2. Add the systemd service file:
 
     `sudoedit /etc/systemd/system/restart-qbittorrent.service`
@@ -37,6 +37,8 @@ On Linux, you can register it as a systemd service:
     ReloadPropagatedFrom=docker.service
 
     [Service]
+    Environment="GLUETUN_CONTAINER_NAME=gluetun"
+    Environment="QBITTORRENT_CONTAINER_NAME=qbittorrent"
     Type=simple
     ExecStart=/path/to/restart-qbittorrent.sh
     KillMode=process
@@ -45,7 +47,7 @@ On Linux, you can register it as a systemd service:
     [Install]
     WantedBy=multi-user.target
     ```
-    Remember to replace `/path/to/restart-qbittorrent.sh` with your path.
+    Remember to replace `/path/to/restart-qbittorrent.sh` with your path and change the environment variables if your container names are different.
 3. Reload systemd and start the service
     ```
     sudo systemctl daemon-reload
